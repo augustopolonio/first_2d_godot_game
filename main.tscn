@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cefcdr67rh3hn"]
+[gd_scene load_steps=7 format=3 uid="uid://cefcdr67rh3hn"]
 
 [ext_resource type="PackedScene" uid="uid://djt80n6qqmnso" path="res://player.tscn" id="1_63dob"]
 [ext_resource type="Script" path="res://main.gd" id="1_fakw1"]
 [ext_resource type="PackedScene" uid="uid://c1byhdpwgtmho" path="res://mob.tscn" id="2_cxp68"]
 [ext_resource type="PackedScene" uid="uid://bsxe5dsoy2rcn" path="res://HUD.tscn" id="4_fh6hq"]
+[ext_resource type="Texture2D" uid="uid://kk3by8g6n0c5" path="res://art/other/bg_space_seamless.png" id="5_ncand"]
 
 [sub_resource type="Curve2D" id="Curve2D_3wnfj"]
 _data = {
@@ -14,6 +15,20 @@ point_count = 5
 [node name="Main" type="Node"]
 script = ExtResource("1_fakw1")
 mob_scene = ExtResource("2_cxp68")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_right = 1294.0
+offset_bottom = 728.0
+texture = ExtResource("5_ncand")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.313726, 0.639216, 0.792157, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_63dob")]
 
