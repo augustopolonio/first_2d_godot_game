@@ -3,6 +3,9 @@ extends CanvasLayer
 # Notifies `Main` node that the button has been pressed
 signal start_game
 
+func _ready():
+	$Buttons/Start.grab_focus()
+
 class Colors:
 	const RED = "f76a4f"
 	const RED_DARK = "3a0903"
@@ -28,15 +31,16 @@ func show_game_over():
 	$Logo.show()
 	# Make a one-shot timer and wait for it to finish.
 	await get_tree().create_timer(1).timeout
-	$StartButton.show()	
+	$Buttons.show()	
+	$Buttons/Start.grab_focus()
 	
 func update_score(score):
 	$ScoreLabel.text = str(score)
 
-func _on_start_button_pressed():
-	$StartButton.hide()
-	$Logo.hide()
-	start_game.emit()
-
 func _on_message_timer_timeout():	
 	$Message.hide()
+
+func _on_start_pressed():
+	$Buttons.hide()
+	$Logo.hide()
+	start_game.emit()
