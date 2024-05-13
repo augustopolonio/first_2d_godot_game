@@ -3,8 +3,9 @@ extends Node
 @export var mob_scene: PackedScene
 var score
 
-# func _ready():
-	# new_game()
+class Colors:
+	const GREEN = "00e16b"
+	const GREEN_DARK = "001b07"
 
 func game_over():
 	$ScoreTimer.stop()
@@ -21,13 +22,10 @@ func new_game():
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)
-	$HUD.show_message("Get Ready!")
+	$HUD.show_message("Get Ready!", Colors.GREEN, Colors.GREEN_DARK)
 	
 	await get_tree().create_timer(2).timeout
 	$HUD/ScoreLabel.show()
-	
-#	if not $Music.playing:
-#		$Music.play()
 	
 	get_tree().call_group("mobs", "queue_free")
 

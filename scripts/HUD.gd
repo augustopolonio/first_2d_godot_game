@@ -3,13 +3,23 @@ extends CanvasLayer
 # Notifies `Main` node that the button has been pressed
 signal start_game
 
-func show_message(text):
+class Colors:
+	const RED = "f76a4f"
+	const RED_DARK = "3a0903"
+	
+func change_text_color(color, dark_color):
+	$Message.add_theme_color_override("font_color", Color(color))
+	$Message.add_theme_color_override("font_outline_color", Color(dark_color))
+	$Message.add_theme_color_override("font_shadow_color", Color(dark_color))
+
+func show_message(text, color, dark_color):
 	$Message.text = text
 	$Message.show()
-	$MessageTimer.start()	
+	$MessageTimer.start()
+	change_text_color(color, dark_color)
 	
 func show_game_over():
-	show_message("Game Over")
+	show_message("Game Over", Colors.RED, Colors.RED_DARK)
 	# Wait until the MessageTimer has counted down.
 	await $MessageTimer.timeout
 
