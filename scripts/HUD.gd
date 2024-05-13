@@ -26,7 +26,6 @@ func show_game_over():
 	# Wait until the MessageTimer has counted down.
 	await $MessageTimer.timeout
 
-	#$Message.text = "Dodge the Creeps!"
 	$Message.hide()
 	$Logo.show()
 	# Make a one-shot timer and wait for it to finish.
@@ -44,3 +43,6 @@ func _on_start_pressed():
 	$Buttons.hide()
 	$Logo.hide()
 	start_game.emit()
+
+func _on_exit_pressed():
+	get_tree().quit()
