@@ -4,7 +4,7 @@ extends CanvasLayer
 signal start_game
 
 func _ready():
-	$Buttons/Start.grab_focus()
+	$MainMenu/Buttons/Start.grab_focus()
 
 class Colors:
 	const RED = "f76a4f"
@@ -27,11 +27,11 @@ func show_game_over():
 	await $MessageTimer.timeout
 
 	$Message.hide()
-	$Logo.show()
+	$MainMenu.show()
 	# Make a one-shot timer and wait for it to finish.
 	await get_tree().create_timer(1).timeout
-	$Buttons.show()	
-	$Buttons/Start.grab_focus()
+	$MainMenu/Buttons.show()	
+	$MainMenu/Buttons/Start.grab_focus()
 	
 func update_score(score):
 	$ScoreLabel.text = str(score)
@@ -40,9 +40,19 @@ func _on_message_timer_timeout():
 	$Message.hide()
 
 func _on_start_pressed():
-	$Buttons.hide()
-	$Logo.hide()
+	$MainMenu.hide()
+	$MainMenu/Buttons.hide()
 	start_game.emit()
 
+func _on_options_pressed():
+	$MainMenu.hide()
+	#$Options.show()
+	$Options.set_position(Vector2(0, 0))
+
+func _on_back_to_menu_pressed():
+	$Options.set_position(Vector2(600, 0))
+	$MainMenu.show()
+	
 func _on_exit_pressed():
 	get_tree().quit()
+
